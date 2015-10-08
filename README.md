@@ -1,26 +1,90 @@
-# Oficina de introdução à linguagem PHP
+# Conceitos básicos - Oficina de introdução à linguagem PHP
 
-Bem vindo!
+Nesta parte conheceremos os conceitos mais básicos da linguagem (variáveis, tipos, operadores e erros).
+Para isso utilizaremos o interpretador interativo (ext-readline), executando o comando abaixo:
 
-Aqui você encontrará instruções e exercícios para acompanhar a oficina.
-É importante ressaltar que daremos apenas uma visão superficial da linguagem e que
-para maiores informações você deve recorrer à [documentação oficial](http://php.net).
+```sh
+php -a
+```
 
-## Programação
+## Variáveis
 
-1. [Conceitos básicos](https://github.com/PHPSC-Training/php-intro/tree/1-basic)
-1. [Introdução à CLI](https://github.com/PHPSC-Training/php-intro/tree/2-cli-intro)
-1. [Funções](https://github.com/PHPSC-Training/php-intro/tree/3-functions)
-1. [Arquivos](https://github.com/PHPSC-Training/php-intro/tree/4-files)
-1. [Separando e organizando](https://github.com/PHPSC-Training/php-intro/tree/5-splitting)
-1. [Uso de classes](https://github.com/PHPSC-Training/php-intro/tree/6-classes)
-1. [Introdução à WEB](https://github.com/PHPSC-Training/php-intro/tree/7-web-intro)
-1. [Database](https://github.com/PHPSC-Training/php-intro/tree/8-database)
-1. [Uso básico de sessão](https://github.com/PHPSC-Training/php-intro/tree/9-login)
+- Escopo
+- Variáveis variáveis
 
-## Você quer mais?
+```php
+<?php
 
-- [Composer](http://getcomposer.org)
-- [SPL](http://php.net/manual/en/book.spl.php)
-- [PHP QA Tools](http://phpqatools.org)
-- [PSRs](http://www.php-fig.org/psr)
+$testing = 'blah'; // Escopo global
+var_dump($_SERVER); // Escopo superglobal
+
+$blah = 'Uhull!';
+
+echo $$testing; // Variável variável, saída será: Uhull!
+```
+
+## Tipos básicos
+
+```php
+<?php
+// boolean
+$testing = true;
+$testing = false;
+
+// integer
+$testing = 10;
+
+// float
+$testing = 5.4;
+
+// string
+$testing = "one";
+$testing = 'other';
+
+// array
+$testing = [1, 2, 3, 'a', 'b', 'c'];
+$testing = ['one' => 1];
+$testing = array(1, 2, 3, 'a', 'b', 'c');
+$testing = array('one' => 1);
+
+// NULL
+$testing = null;
+```
+
+## Operadores básicos
+
+Bem parecido com Java, exceto:
+
+- ```-$x```: negação aritimética
+- ```**```: exponenciação
+- ```===```: comparação identica
+- ```!==```: comparação não identica
+- ```.```: concatenação
+
+## Type juggling (black magic! :smile:)
+
+```php
+$testing = "0"; // string
+$testing = $testing + 2; // Agora é int
+$testing = $testing + 0.5; // Vixe, float
+
+var_dump(true == 1); // true
+var_dump(true === 1); // false
+
+var_dump(true == "true"); // true
+var_dump(true === "true"); // false
+
+var_dump(10 == "10"); // true
+var_dump(10 === "10"); // false
+```
+
+## Erros básicos
+
+- Parse error
+- Notice
+- Warning
+- Fatal error
+
+## Próximo item
+
+[Introdução à CLI](https://github.com/PHPSC-Training/php-intro/tree/2-cli-intro)
