@@ -1,26 +1,83 @@
-# Oficina de introdução à linguagem PHP
+# Introdução à CLI - Oficina de introdução à linguagem PHP
 
-Bem vindo!
+Nesta parte vamos falar um pouco sobre a criação de scripts básicos utilizando a linha de comando.
+Para isso você deve criar um arquivo qualquer e executá-lo usando o comando ```php```.
 
-Aqui você encontrará instruções e exercícios para acompanhar a oficina.
-É importante ressaltar que daremos apenas uma visão superficial da linguagem e que
-para maiores informações você deve recorrer à [documentação oficial](http://php.net).
+Por exemplo:
 
-## Programação
+```sh
+echo "<?php echo 'Hello world', PHP_EOL;" > test.php
+php test.php
+```
 
-1. [Conceitos básicos](https://github.com/PHPSC-Training/php-intro/tree/1-basic)
-1. [Introdução à CLI](https://github.com/PHPSC-Training/php-intro/tree/2-cli-intro)
-1. [Funções](https://github.com/PHPSC-Training/php-intro/tree/3-functions)
-1. [Arquivos](https://github.com/PHPSC-Training/php-intro/tree/4-files)
-1. [Separando e organizando](https://github.com/PHPSC-Training/php-intro/tree/5-splitting)
-1. [Uso de classes](https://github.com/PHPSC-Training/php-intro/tree/6-classes)
-1. [Introdução à WEB](https://github.com/PHPSC-Training/php-intro/tree/7-web-intro)
-1. [Database](https://github.com/PHPSC-Training/php-intro/tree/8-database)
-1. [Uso básico de sessão](https://github.com/PHPSC-Training/php-intro/tree/9-login)
+## Constantes
 
-## Você quer mais?
+```php
+<?php
+define('TESTING', 1);
+const TESTING_2 = 2;
+```
 
-- [Composer](http://getcomposer.org)
-- [SPL](http://php.net/manual/en/book.spl.php)
-- [PHP QA Tools](http://phpqatools.org)
-- [PSRs](http://www.php-fig.org/psr)
+## Streams
+
+Usamos fopen, fgets, fwrite, fread, fclose pra trabalhar com streams.
+
+Os streams mais básicos são ```php://stdin```, ```php://stdout``` e ```php://stderr```:
+
+```php
+<?php
+// Imprime "Testing\n" no buffer de saída
+$stdout = fopen('php://stdout', 'w');
+fwrite($stdout, "Testing\n");
+fclose($stdout);
+
+// Imprime "Testing\n" no buffer de erro
+$stderr = fopen('php://stderr', 'w');
+fwrite($stderr, "Testing\n");
+fclose($stderr);
+
+// Lê do buffer de entrada (até a quebra de linha)
+$stdin = fopen('php://stdin', 'r');
+echo fgets($stdin);
+fclose($stdin);
+```
+
+O PHP disponibiliza as constantes ```STDIN```, ```STDOUT``` e ```STDERR``` para facilitar nosso trabalho:
+
+```php
+<?php
+// Imprime "Testing\n" no buffer de saída
+fwrite(STDOUT, "Testing\n");
+
+// Imprime "Testing\n" no buffer de erro
+fwrite(STDERR, "Testing\n");
+
+// Lê do buffer de entrada (até a quebra de linha)
+echo fgets(STDIN);
+```
+
+O comando ```echo``` escreve por padrão no STDOUT.
+
+## Códigos de saída
+
+Todo comando tem um código de saída que deve estar entre 0-255.
+O 0 significa que o programa executou com sucesso, códigos maiores que 0 significam erros.
+
+Através da função ```exit()``` podemos alterar o código de saída de um script:
+
+```php
+<?php
+echo "Digite seu nome: ";
+$name = trim(fgets(STDIN));
+
+if (strlen($name) > 10) {
+    fwrite(STDERR, "Nome muito longo");
+    exit(1);
+}
+
+echo "Bem vindo $name\n";
+```
+
+## Próximo item
+
+[Funções](https://github.com/PHPSC-Training/php-intro/tree/3-functions)
