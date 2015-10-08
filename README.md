@@ -1,26 +1,33 @@
-# Oficina de introdução à linguagem PHP
+# Funções - Oficina de introdução à linguagem PHP
 
-Bem vindo!
+Para organizar melhor nossos scritps podemos criar funções e procedimentos. O PHP disponibiliza
+a estrutura ```function``` para isso:
 
-Aqui você encontrará instruções e exercícios para acompanhar a oficina.
-É importante ressaltar que daremos apenas uma visão superficial da linguagem e que
-para maiores informações você deve recorrer à [documentação oficial](http://php.net).
+```php
+<?php
+function test($one, $other) {
+    return $one . " " . $other . PHP_EOL;
+}
 
-## Programação
+echo test("Hello", "World");
+echo test("Hello", "Luís");
 
-1. [Conceitos básicos](https://github.com/PHPSC-Training/php-intro/tree/1-basic)
-1. [Introdução à CLI](https://github.com/PHPSC-Training/php-intro/tree/2-cli-intro)
-1. [Funções](https://github.com/PHPSC-Training/php-intro/tree/3-functions)
-1. [Arquivos](https://github.com/PHPSC-Training/php-intro/tree/4-files)
-1. [Separando e organizando](https://github.com/PHPSC-Training/php-intro/tree/5-splitting)
-1. [Uso de classes](https://github.com/PHPSC-Training/php-intro/tree/6-classes)
-1. [Introdução à WEB](https://github.com/PHPSC-Training/php-intro/tree/7-web-intro)
-1. [Database](https://github.com/PHPSC-Training/php-intro/tree/8-database)
-1. [Uso básico de sessão](https://github.com/PHPSC-Training/php-intro/tree/9-login)
+// Parametros com valor padrão
+function test2($one = 'Hello', $other = 'World') {
+    return $one . " " . $other . PHP_EOL;
+}
 
-## Você quer mais?
+echo test2();
+echo test2("Hi");
 
-- [Composer](http://getcomposer.org)
-- [SPL](http://php.net/manual/en/book.spl.php)
-- [PHP QA Tools](http://phpqatools.org)
-- [PSRs](http://www.php-fig.org/psr)
+// Funções anônimas
+$testing = function () {
+    echo "Hello there!\n";
+};
+
+$testing();
+```
+
+## Próximo item
+
+[Arquivos](https://github.com/PHPSC-Training/php-intro/tree/4-files)
